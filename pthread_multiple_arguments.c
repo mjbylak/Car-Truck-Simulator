@@ -270,7 +270,7 @@ int main(void)
             
             srand(time(NULL));
             double r = (rand() % 100) / 100;
-			fprintf(stderr,"\nProb is %f \n", r);
+			printf(stderr,"\nProb is %d \n", r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
