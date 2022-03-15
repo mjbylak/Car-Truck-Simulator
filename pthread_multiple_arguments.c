@@ -128,7 +128,7 @@ int main(void)
             //double truckProb = 1 - carprob;
             srand(time(NULL));
             double r = (rand() % 100) / 100;
-            int direct; = rand() % 2;
+            int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
