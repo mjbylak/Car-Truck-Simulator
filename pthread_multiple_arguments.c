@@ -40,7 +40,7 @@ pthread_cond_t TruckNorthMovable, TruckSouthMovable, CarNorthMovable, CarSouthMo
 
 
 
-void *vehicle_routine(pmstr_t *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
+void *vehicle_routine(void *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
                                            //direction: 0 for north, 1 for south;
 void vehicle_arrival(pmstr_t *pmstrpara);
 void waitinglistinsert(int vehicle_id,int vehicle_type, int direction);
@@ -124,7 +124,6 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -194,7 +193,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
+            
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -263,7 +262,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
+            
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -332,7 +331,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
+            
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -429,7 +428,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
+            
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -525,7 +524,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            //double truckProb = 1 - carprob;
+            
             srand(time(NULL));
             double r = (rand() % 100) / 100;
             int direct = rand() % 2;
