@@ -159,6 +159,7 @@ int main(void)
 		for (j=10; j<=19; j++)
 		{
 			double r = (rand() % 100) / 100;
+			printf("f",r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -198,6 +199,7 @@ int main(void)
             
             srand(time(NULL));
             double r = (rand() % 100) / 100;
+			printf("f",r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -229,6 +231,7 @@ int main(void)
 		for (j=10; j<=19; j++)
 		{
 			double r = (rand() % 100) / 100;
+			printf("f",r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -267,6 +270,7 @@ int main(void)
             
             srand(time(NULL));
             double r = (rand() % 100) / 100;
+			printf("f",r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -298,6 +302,7 @@ int main(void)
 		for (j=10; j<=19; j++)
 		{
 			double r = (rand() % 100) / 100;
+			printf("f",r);
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
