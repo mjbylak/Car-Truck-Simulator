@@ -126,7 +126,7 @@ int main(void)
             //call rand() to decide vehicle type and direction
             
             srand(time(NULL));
-            double r = (rand() % 100) / 100;
+            float r = (rand() % 100) / 100;
 			printf("f",r);
             int direct = rand() % 2;			
 			printf("f", direct);
@@ -159,9 +159,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			double r = (rand() % 100) / 100;
-			printf("f",r);
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -199,9 +201,10 @@ int main(void)
             
             
             srand(time(NULL));
-            double r = (rand() % 100) / 100;
-			printf("f",r);
-            int direct = rand() % 2;
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -231,9 +234,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			double r = (rand() % 100) / 100;
-			printf("f",r);
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -268,11 +273,11 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            
             srand(time(NULL));
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
+			int direct;
                         
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -302,9 +307,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			double r = (rand() % 100) / 100;
-			printf("f",r);
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -339,10 +346,11 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            
             srand(time(NULL));
-            double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -372,8 +380,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+			srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -400,8 +411,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=20; j<=29; j++)
 		{
-			double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -438,8 +452,10 @@ int main(void)
             
             
             srand(time(NULL));
-            double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -469,8 +485,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -497,8 +516,11 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=20; j<=29; j++)
 		{
-			double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+            srand(time(NULL));
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -534,8 +556,10 @@ int main(void)
             
             
             srand(time(NULL));
-            double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+			float r = (rand()%100);
+			r = r/100;
+			printf("\nProb is %f \n", r);
+			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
