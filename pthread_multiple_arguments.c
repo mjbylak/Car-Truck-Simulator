@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+// hello jack
 //Global variables
 typedef struct waitinglist
 {
@@ -125,6 +125,42 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
+            //double truckProb = 1 - carprob;
+            srand(time(NULL));
+            double r = (rand() % 100) / 100;
+            int direct; = rand() % 2;
+            
+            //generate pmstr_t struct to save the vehicle type, direction, and id
+            pmstr_t args;
+            direct = rand() % 2;
+            args.vehicle_id = j;
+            args.direction = direct;
+            if(r <= carprob){
+                args.vehicle_type = 1;
+            }
+            else args.vehicle_type = 0;            
+
+            //call vehicle_arrival()
+            vehicle_arrival(pmstr_t);
+            
+            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+
+            
+		}
+		pthread_mutex_unlock(&lock);
+
+
+	    sleep(10);//delay (10)
+
+
+
+		pthread_mutex_lock(&lock);
+		for (j=10; j<=19; j++)
+		{
+
+            //call rand() to decide vehicle type and direction
+            
             double truckProb = 1 - carprob;
             srand(time(NULL));
             double r = (rand() % 100) / 100;
@@ -143,27 +179,8 @@ int main(void)
             //call vehicle_arrival()
             vehicle_arrival(pmstr_t);
             
+            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
             pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
-
-            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-
-		}
-		pthread_mutex_unlock(&lock);
-
-
-	    sleep(10);//delay (10)
-
-
-
-		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
-		{
-
-            //call rand() to decide vehicle type and direction
-            //generate pmstr_t struct to save the vehicle type, direction, and id
-            //call vehicle_arrival()
-            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-
 		}
 		pthread_mutex_unlock(&lock);
 
