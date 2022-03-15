@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-// hello jack
+
 //Global variables
 typedef struct waitinglist
 {
@@ -121,7 +121,6 @@ int main(void)
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
-
 
             //call rand() to decide vehicle type and direction
             
@@ -629,6 +628,7 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
+		
 		//while (this vehicle cannot cross) {
 		//     wait for proper moving signal
 		//}
