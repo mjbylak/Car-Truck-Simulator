@@ -211,10 +211,12 @@ int main(void)
             direct = rand() % 2;
             args.vehicle_id = j;
             args.direction = direct;
-            /*if(r < carprob){
+            if(r <= carprob){
                 args.vehicle_type = 1;
             }
-            else*/ args.vehicle_type = 0;            
+            else args.vehicle_type = 0;
+
+			args.vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -653,8 +655,6 @@ int main(void)
 void *vehicle_routine(pmstr_t *pmstrpara)
 {
 	char *strdir;
-
-	pmstr_t->vehicle_type = 0;
 
 
 	if (pmstrpara->vehicle_type) //car
