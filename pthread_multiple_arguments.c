@@ -211,7 +211,7 @@ int main(void)
             direct = rand() % 2;
             args.vehicle_id = j;
             args.direction = direct;
-            if(r <= carprob){
+            if(r < carprob){
                 args.vehicle_type = 1;
             }
             else args.vehicle_type = 0;            
