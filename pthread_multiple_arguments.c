@@ -126,7 +126,9 @@ int main(void)
             
             srand(time(NULL));
             double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
+			printf("f",r);
+            int direct = rand() % 2;			
+			printf("f", direct);
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
