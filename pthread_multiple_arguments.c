@@ -158,12 +158,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-
-            //call rand() to decide vehicle type and direction
-            
-            double truckProb = 1 - carprob;
-            srand(time(NULL));
-            double r = (rand() % 100) / 100;
+			double r = (rand() % 100) / 100;
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
