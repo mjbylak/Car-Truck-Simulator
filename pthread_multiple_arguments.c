@@ -139,7 +139,7 @@ int main(void)
             else args.vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&pmstr_t);
+            vehicle_arrival(*pmstr_t);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
             pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
