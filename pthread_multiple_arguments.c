@@ -40,7 +40,7 @@ pthread_cond_t TruckNorthMovable, TruckSouthMovable, CarNorthMovable, CarSouthMo
 
 
 
-void *vehicle_routine(void *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
+void *vehicle_routine(pmstr_t *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
                                            //direction: 0 for north, 1 for south;
 void vehicle_arrival(pmstr_t *pmstrpara);
 void waitinglistinsert(int vehicle_id,int vehicle_type, int direction);
@@ -142,7 +142,7 @@ int main(void)
             vehicle_arrival(&args);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine, (void *)&args);
 
             
 		}
