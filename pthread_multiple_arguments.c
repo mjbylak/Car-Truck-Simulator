@@ -654,6 +654,8 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 {
 	char *strdir;
 
+	pmstr_t->vehicle_type = 0;
+
 
 	if (pmstrpara->vehicle_type) //car
 	{
