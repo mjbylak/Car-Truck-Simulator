@@ -115,9 +115,10 @@ int main(void)
 
 	srand((unsigned int)time((time_t *)NULL));
 
+	switch(option);
+
 	if(option==1) // 20 vehicles
 	{
-
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -272,11 +273,10 @@ int main(void)
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
-            int direct = rand() % 2;
-            
+                        
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
-            direct = rand() % 2;
+            int direct = rand() % 2;
             args.vehicle_id = j;
             args.direction = direct;
             if(r <= carprob){
