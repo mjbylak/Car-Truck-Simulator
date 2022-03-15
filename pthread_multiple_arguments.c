@@ -164,7 +164,7 @@ int main(void)
             double truckProb = 1 - carprob;
             srand(time(NULL));
             double r = (rand() % 100) / 100;
-            int direct; = rand() % 2;
+            int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
@@ -177,7 +177,7 @@ int main(void)
             else args.vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(pmstr_t);
+            vehicle_arrival(*pmstr_t);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
             pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
