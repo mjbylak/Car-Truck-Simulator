@@ -148,7 +148,7 @@ int main(void)
 		pthread_mutex_unlock(&lock);
 
 
-	    sleep(10);//delay (10)
+	    //sleep(10);//delay (10)
 
 
 
