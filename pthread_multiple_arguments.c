@@ -116,7 +116,7 @@ int main(void)
 	srand((unsigned int)time((time_t *)NULL));
 	if(option==1) // 20 vehicles
 	{
-		pmstr_t args [20];
+		pmstr_t args [20];  //setting up an array of arguments to store all values of vehicles
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -187,7 +187,7 @@ int main(void)
 
 	else if(option==2) // 20 vehicles
 	{
-
+		pmstr_t args [20];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -203,16 +203,16 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;
+            else args[j].vehicle_type = 0;
 
-			args.vehicle_type = 0;
+			args[j].vehicle_type = 0;
      
 
             //call vehicle_arrival()
@@ -240,14 +240,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -265,6 +265,8 @@ int main(void)
 
 	else if(option==3) // 20 vehicles
 	{
+
+		pmstr_t args [20];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -279,14 +281,14 @@ int main(void)
 			int direct;
                         
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -313,14 +315,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -337,7 +339,7 @@ int main(void)
 
 	else if(option==4) // 30 vehicles
 	{
-
+		pmstr_t args [30];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -352,14 +354,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -386,14 +388,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -417,14 +419,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -441,7 +443,8 @@ int main(void)
 
 	else if(option==5) // 30 vehicles
 	{
-		
+
+		pmstr_t args [30];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -457,14 +460,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -491,14 +494,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -522,14 +525,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -545,7 +548,8 @@ int main(void)
 
 	else //option6: 30 vehicles
 	{
-		
+
+		pmstr_t args [30];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -561,14 +565,14 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -592,14 +596,14 @@ int main(void)
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -620,14 +624,14 @@ int main(void)
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
