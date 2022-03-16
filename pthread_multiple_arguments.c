@@ -40,7 +40,7 @@ pthread_cond_t TruckNorthMovable, TruckSouthMovable, CarNorthMovable, CarSouthMo
 
 
 
-void *vehicle_routine(pmstr_t *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
+void *vehicle_routine(void *pmstrpara); //vehicle_type: 0 for truck, 1 for car;
                                            //direction: 0 for north, 1 for south;
 void vehicle_arrival(pmstr_t *pmstrpara);
 void waitinglistinsert(int vehicle_id,int vehicle_type, int direction);
@@ -653,10 +653,10 @@ int main(void)
 } // end of main function
 
 
-void *vehicle_routine(pmstr_t *pmstrpara)
+void *vehicle_routine(void *pmstrpara_a)
 {
 	char *strdir;
-
+	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_a;
 
 	if (pmstrpara->vehicle_type) //car
 	{
@@ -721,8 +721,6 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 
 void vehicle_arrival(pmstr_t *pmstrpara)
 {
-	pmstrpara->vehicle_type = 0;
-	
 	if(pmstrpara->vehicle_type)
 	{
 		if (pmstrpara->direction)
