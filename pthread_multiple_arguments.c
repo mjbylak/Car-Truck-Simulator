@@ -673,7 +673,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			
 			
 		//     wait for proper moving signal
-			pthread_cond_wait(&CarNorthMovable, &lock);
 
 			
 		cannotCross = 	(movingcar == 3 || movingtruck != 0) ||
