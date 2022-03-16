@@ -726,7 +726,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						pthread_cond_signal(&CarSouthMovable);
 						pthread_cond_signal(&CarSouthMovable);
 					}
-					if else (waitingcarsouth == 2){
+					else if (waitingcarsouth == 2){
 						pthread_cond_signal(&CarSouthMovable);
 						pthread_cond_signal(&CarSouthMovable);
 					}
