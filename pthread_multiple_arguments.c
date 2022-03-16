@@ -713,10 +713,15 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
-				pthread_cond_signal(&CarNorthMovable);
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarNorthMovable);
+				} 
+				
 			}
 			else if (waitingcarsouth > 0) {
-				pthread_cond_signal(&CarSouthMovable);
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarSouthMovable);
+				} 
 			}
 		}
 
