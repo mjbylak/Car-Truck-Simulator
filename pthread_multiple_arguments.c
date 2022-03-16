@@ -114,9 +114,6 @@ int main(void)
 	}
 
 	srand((unsigned int)time((time_t *)NULL));
-
-	switch(option);
-
 	if(option==1) // 20 vehicles
 	{
         pthread_mutex_lock(&lock);
@@ -655,6 +652,7 @@ int main(void)
 
 } // end of main function
 
+
 void *vehicle_routine(pmstr_t *pmstrpara)
 {
 	char *strdir;
@@ -664,7 +662,6 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
-		
 		//while (this vehicle cannot cross) {
 		//     wait for proper moving signal
 		//}
@@ -724,9 +721,6 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 
 void vehicle_arrival(pmstr_t *pmstrpara)
 {
-fprintf(stderr,"\nProb is %f \n", pmstrpara->vehicle_type);
-return;
-
 	if(pmstrpara->vehicle_type)
 	{
 		if (pmstrpara->direction)
