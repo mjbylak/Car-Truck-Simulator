@@ -762,7 +762,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
 		//while (this vehicle cannot cross) {
-		/*while (cantCross){
+		while (cantCross){
 			if(pmstrpara->direction == 0)
 				pthread_cond_wait(&TruckNorthMovable, &lock);
 			else pthread_cond_wait(&TruckSouthMovable, &lock);
@@ -770,7 +770,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//     wait for proper moving signal
 		cantCross = (movingcar == 3 || movingtruck != 0) ||
 		(movingcar > 0 && pmstrpara->direction != currentmovingdir);
-		}*/
+		}
 
 
 		//Now begin accrossing
