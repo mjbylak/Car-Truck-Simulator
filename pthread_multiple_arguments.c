@@ -805,11 +805,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
 			fprintf(stderr,"\nThe program thinks previous direction was %d\n", previousmovingdir);
-			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
+			if (waitingtrucknorth > 0 && pmstrpara->direction!=previousmovingdir) {
 				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
 			}
-			else if (waitingtrucksouth > 0 && previousmovingdir == 0) {
+			else if (waitingtrucksouth > 0 && pmstrpara->direction!=previousmovingdir) {
 				previousmovingdir = 1;
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
