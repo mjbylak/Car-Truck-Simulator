@@ -130,8 +130,7 @@ int main(int argc, char *argv[])
             //call rand() to decide vehicle type and direction
             
             
-            float r = (rand() % 100);
-			r = r / 100;
+            float r = (rand() % 100) / 100;
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -710,7 +709,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 	else //truck
 	{
-		pthread_mutex_lock(&lock);
+		/*pthread_mutex_lock(&lock);
 		//Try to cross
 
 		//setting cantCross to the conditions for the truck to not be able to cross
@@ -779,17 +778,19 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
+				previousmovingdir = 0;
 				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
 				} 	
 			}
 			else if (waitingcarsouth > 0) {
+				previousmovingdir = 1;
 				currentmovingdir = 1; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
 				} 
-			}
+			}*/
 		}
 		
 		fprintf(stderr,"\nTruck #%d exited the bridge.\n", pmstrpara->vehicle_id);
