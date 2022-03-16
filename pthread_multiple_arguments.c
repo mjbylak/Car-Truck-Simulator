@@ -159,7 +159,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -202,7 +202,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -239,7 +239,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -276,9 +276,9 @@ int main(void)
             //call rand() to decide vehicle type and direction
             
             
-			float r = (rand()%100);
-			r = r/100;
-			printf("\nProb is %f \n", r);
+			float r = (rand()%100); //find a random number 0 through 99
+			r = r/100; //change it to 0.0 through 0.99
+			
 			int direct;
                         
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -312,7 +312,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -351,7 +351,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -385,7 +385,7 @@ int main(void)
 			
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -416,7 +416,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -456,7 +456,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -490,7 +490,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -521,7 +521,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
@@ -560,7 +560,7 @@ int main(void)
             
 			float r = (rand()%100);
 			r = r/100;
-			printf("\nProb is %f \n", r);
+			
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
