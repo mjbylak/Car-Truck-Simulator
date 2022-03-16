@@ -116,6 +116,7 @@ int main(void)
 	srand((unsigned int)time((time_t *)NULL));
 	if(option==1) // 20 vehicles
 	{
+		pmstr_t args [20];
         pthread_mutex_lock(&lock);
 		for (j=0; j<=9; j++)
 		{
@@ -127,20 +128,20 @@ int main(void)
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
+            
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;            
+            else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j];
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine, (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine, (void *)&args[j]);
 
             
 		}
@@ -161,21 +162,20 @@ int main(void)
 			int direct;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
-            pmstr_t args;
             direct = rand() % 2;
-            args.vehicle_id = j;
-            args.direction = direct;
+            args[j].vehicle_id = j;
+            args[j].direction = direct;
             if(r <= carprob){
-                args.vehicle_type = 1;
+                args[j].vehicle_type = 1;
             }
-            else args.vehicle_type = 0;   
+            else args[j].vehicle_type = 0;   
 
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
