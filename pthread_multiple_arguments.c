@@ -52,7 +52,7 @@ void printmoving();
 void printwaiting();
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int option;
 	int i,j;
@@ -97,7 +97,8 @@ int main(void)
 	do
 	{
 		fprintf(stderr,"\nPlease select [1-6]:");
-		scanf("%d", &option);
+		option = atoi(argv[1]);
+		//scanf("%d", &option);
 	}while((option<0) || (option>6));
 
 	fprintf(stderr,"***************************************************************\n");
