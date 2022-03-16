@@ -122,7 +122,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            srand(time(NULL));
+            
             float r = (rand() % 100) / 100;
 			printf("f",r);
             int direct = rand() % 2;			
@@ -156,7 +156,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -199,7 +199,7 @@ int main(void)
             //call rand() to decide vehicle type and direction
             
             
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -236,7 +236,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -275,7 +275,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -309,7 +309,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -348,7 +348,7 @@ int main(void)
 
             //call rand() to decide vehicle type and direction
             
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -382,7 +382,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-			srand(time(NULL));
+			
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -413,7 +413,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=20; j<=29; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -453,7 +453,7 @@ int main(void)
             //call rand() to decide vehicle type and direction
             
             
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -487,7 +487,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=10; j<=19; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -518,7 +518,7 @@ int main(void)
 		pthread_mutex_lock(&lock);
 		for (j=20; j<=29; j++)
 		{
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
@@ -557,7 +557,7 @@ int main(void)
             //call rand() to decide vehicle type and direction
             
             
-            srand(time(NULL));
+            
 			float r = (rand()%100);
 			r = r/100;
 			printf("\nProb is %f \n", r);
