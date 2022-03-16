@@ -730,7 +730,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						pthread_cond_signal(&CarSouthMovable);
 						pthread_cond_signal(&CarSouthMovable);
 					}
-					else
+					else {
 					pthread_cond_signal(&CarSouthMovable);
 				} 
 			}
