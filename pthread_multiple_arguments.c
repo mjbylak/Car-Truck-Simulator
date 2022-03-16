@@ -707,9 +707,9 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	}
 
 
-	else //truck
+	/*else //truck
 	{
-		/*pthread_mutex_lock(&lock);
+		pthread_mutex_lock(&lock);
 		//Try to cross
 
 		//setting cantCross to the conditions for the truck to not be able to cross
@@ -790,7 +790,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
 				} 
-			}*/
+			}
 		}
 		
 		fprintf(stderr,"\nTruck #%d exited the bridge.\n", pmstrpara->vehicle_id);
@@ -798,7 +798,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		pthread_mutex_unlock(&lock);
 
 
-	}
+	}*/
 
 
 
