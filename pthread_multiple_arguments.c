@@ -724,7 +724,25 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
-
+		if(movingcar > 0) {
+			if (waitingtrucknorth > 0) {
+				pthread_cond_signal(&TruckNorthMovable);
+			}
+			else if (waitingtrucksouth > 0) {
+				pthread_cond_signal(&TruckSouthMovable); 
+				}
+			else if (waitingcarnorth > 0) {
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarNorthMovable);
+				} 
+				
+			}
+			else if (waitingcarsouth > 0) {
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarSouthMovable);
+				} 
+			}
+		}
 		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
