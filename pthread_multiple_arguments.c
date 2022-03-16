@@ -213,10 +213,12 @@ int main(void)
             direct = rand() % 2;
             args.vehicle_id = j;
             args.direction = direct;
-            if(r <= carprob){
+            /*if(r <= carprob){
                 args.vehicle_type = 1;
             }
-            else args.vehicle_type = 0;
+            else args.vehicle_type = 0;*/
+
+			args.vehicle_type = 0;
      
 
             //call vehicle_arrival()
