@@ -620,7 +620,7 @@ int main(int argc, char *argv[])
 } // end of main function
 
 
-void *vehicle_routine(void *pmstrpara_meth_arg)
+void *vehicle_routine(void *pmstrpara)
 {
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
