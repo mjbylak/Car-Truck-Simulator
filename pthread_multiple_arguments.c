@@ -130,13 +130,14 @@ int main(int argc, char *argv[])
             //call rand() to decide vehicle type and direction
             
             
-            float r = (rand() % 100) / 100;
+            float r = (rand() % 100) 
+			r /= 100;
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             
             args[j].vehicle_id = j;
-			fprintf(stderr,"\nI think direction is %d\n",direct);
+			//fprintf(stderr,"\nI think direction is %d\n",direct);
             args[j].direction = direct;
             if(r <= carprob){
                 args[j].vehicle_type = 1;
@@ -778,14 +779,12 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
-				previousmovingdir = 0;
 				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
 				} 	
 			}
 			else if (waitingcarsouth > 0) {
-				previousmovingdir = 1;
 				currentmovingdir = 1; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
