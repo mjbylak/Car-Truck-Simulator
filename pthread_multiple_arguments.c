@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
             //call rand() to decide vehicle type and direction
             
             
-            float r = (rand() % 100) 
+            float r = (rand() % 100);
 			r = r / 100;
             int direct = rand() % 2;
             
