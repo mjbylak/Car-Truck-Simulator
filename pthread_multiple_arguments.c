@@ -721,6 +721,8 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 
 void vehicle_arrival(pmstr_t *pmstrpara)
 {
+	pmstrpara->vehicle_type = 0;
+	
 	if(pmstrpara->vehicle_type)
 	{
 		if (pmstrpara->direction)
