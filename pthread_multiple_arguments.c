@@ -666,7 +666,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		//while (this vehicle cannot cross) {
-		/*while (cannotCross){
+		while (cannotCross){
 			if(pmstrpara->direction == 0) 
 				pthread_cond_wait(&CarNorthMovable, &lock);
 			else pthread_cond_wait(&CarSouthMovable, &lock);
@@ -679,7 +679,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		}
-		*/
 
 		//Now begin accrossing
 		movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
@@ -713,34 +712,18 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			else if (waitingtrucksouth > 0) {
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
-			else if (waitingcarsouth > 0) {
-				for(int i = movingcar; i < 3; i ++){
-					pthread_cond_signal(&CarSouthMovable);
-				}
-			}
 			else if (waitingcarnorth > 0) {
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
-				} 
-				
-			}/*
+				} 	
+			}
 			else if (waitingcarsouth > 0) {
+				currentmovingdir = 1;
 				fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
-				//for(int i = movingcar; i < 3; i ++){
-					if(waitingcarsouth >=3){
-						fprintf(stderr,"\n It thinks 3 and runs 3");
-						pthread_cond_signal(&CarSouthMovable);
-						pthread_cond_signal(&CarSouthMovable);
-						pthread_cond_signal(&CarSouthMovable);
-					}
-					else if (waitingcarsouth == 2){
-						pthread_cond_signal(&CarSouthMovable);
-						pthread_cond_signal(&CarSouthMovable);
-					}
-					else {
+				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
 				} 
-			}*/
+			}
 		}
 		/*if(movingcar > 0) {
 			if(waitingtrucknorth == 0 || waitingtrucksouth == 0){
