@@ -725,7 +725,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			}
 		}
 
-		
+		fprintf(stderr,movingcar);
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
 		pthread_mutex_unlock(&lock);
