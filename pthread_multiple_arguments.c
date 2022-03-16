@@ -636,6 +636,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+	if (cantCross) fprintf(stderr,"\nTriggered cantCross on car %d.\n",pmstrpara->vehicle_id);
+		
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 			if(pmstrpara->direction == 0) 
@@ -650,7 +652,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
-						fprintf(stderr,"\nTriggered cantCross on car %d.\n",pmstrpara->vehicle_id);
+						
 		}
 
 		//Now begin accrossing
