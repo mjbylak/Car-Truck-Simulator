@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
             
             
             float r = (rand() % 100) 
-			r /= 100;
+			r = r / 100;
             int direct = rand() % 2;
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
