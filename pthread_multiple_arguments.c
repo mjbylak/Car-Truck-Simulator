@@ -650,17 +650,20 @@ int main(void)
 } // end of main function
 
 
-void *vehicle_routine(void *pmstrpara_a)
+void *vehicle_routine(void *pmstrpara_meth_arg)
 {
 	char *strdir;
-	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_a;
+	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
 	if (pmstrpara->vehicle_type) //car
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
-	int cannotCross = 	(movingcar == 3 || movingtruck > 0) ||
-						(waitingtrucknorth > 0 || waitingtrucksouth > 0) ||
+	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
+	// or any moving trucks, or any waiting trucks
+	// or moving car in different direction
+	int cannotCross = 	(movingcar == 3 || movingtruck != 0) ||
+						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		//while (this vehicle cannot cross) {
 		while (cannotCross){
@@ -673,8 +676,8 @@ void *vehicle_routine(void *pmstrpara_a)
 			pthread_cond_wait(&CarNorthMovable, &lock);
 
 			
-		cannotCross = 	(movingcar == 3 || movingtruck > 0) ||
-						(waitingtrucknorth > 0 || waitingtrucksouth > 0) ||
+		cannotCross = 	(movingcar == 3 || movingtruck != 0) ||
+						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		}
 
@@ -703,7 +706,22 @@ void *vehicle_routine(void *pmstrpara_a)
 		movingcar--;
 
 		//send out signals to wake up vehicle(s) accordingly
+		if (movingcar == 0) {
+			if (waitingcarnorth > 0) {
+				pthread_cond_signal(&CarNorthMovable);
+			}
+			else if (waitingcarsouth > 0) { 
+				pthread_cond_signal(&CarSouthMovable);
+			}
+			else if (waitingtrucknorth > 0) {
+				pthread_cond_signal(&TruckNorthMovable);
+			}
+			else if (waitingtrucksouth > 0) {
+				pthread_cond_signal(&TruckSouthMovable);
+			}
+		}
 
+		if (movingcar)
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
 		pthread_mutex_unlock(&lock);
