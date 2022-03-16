@@ -649,6 +649,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+
+						fprintf(stderr,"\nTriggered cantCross on car %d.\n",pmstrpara->vehicle_id);
 		}
 
 		//Now begin accrossing
@@ -714,7 +716,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//setting cantCross to the conditions for the truck to not be able to cross
 		//if there are 3 moving cars, any moving trucks, or a moving car in the opposite direction
-		/*int cantCross = (movingcar == 3 || movingtruck != 0) ||
+		/int cantCross = (movingcar == 3 || movingtruck != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
 		//while (this vehicle cannot cross) {
@@ -797,7 +799,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-*/
+
 	}
 
 
