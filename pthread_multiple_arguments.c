@@ -713,14 +713,14 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
-				currentmovingdir = 0;
+				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
 				} 	
 			}
 			else if (waitingcarsouth > 0) {
-				currentmovingdir = 1;
-				fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
+				currentmovingdir = 1; //sets the direction to that of the oncoming car, required for 3 cars to join
+				//fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
 				} 
