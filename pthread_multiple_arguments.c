@@ -804,11 +804,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
-			if (waitingtrucknorth > 0) {
+			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
 				pthread_cond_signal(&TruckNorthMovable);
 			}
 			else if (waitingtrucksouth > 0) {
-				pthread_cond_signal(&TruckSouthMovable); 
+				pthread_cond_signal(&TruckSouthMovable && previousmovigdir == 0); 
 				}
 			else if (waitingcarnorth > 0) {
 				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
