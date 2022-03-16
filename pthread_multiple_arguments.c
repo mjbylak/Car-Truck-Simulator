@@ -625,8 +625,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
-	int hasFirstVehicleGone = 0; // A boolean that is necessary for ensuring the first vehicle is north 
-
 	if (pmstrpara->vehicle_type) //car
 	{
 		pthread_mutex_lock(&lock);
@@ -638,8 +636,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
-	if (cantCross) fprintf(stderr,"\nTriggered cantCross on car %d.\n",pmstrpara->vehicle_id);
-		
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 			if(pmstrpara->direction == 0) 
@@ -653,8 +649,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
-
-						
 		}
 
 		//Now begin accrossing
@@ -683,7 +677,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		movingcar--;
 
 		//send out signals to wake up vehicle(s) accordingly
-		if (hasFirstVehicleGone) {
 		if (movingcar ==0) {
 			if (waitingtrucknorth > 0) {
 				pthread_cond_signal(&TruckNorthMovable);
@@ -705,10 +698,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
-		}
-		else {
-			if(pmstrpara->direction != 0)  hasFirstVehicleGone = 1;
-		}
+		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
 		pthread_mutex_unlock(&lock);
