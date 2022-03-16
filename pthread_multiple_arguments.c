@@ -716,7 +716,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//setting cantCross to the conditions for the truck to not be able to cross
 		//if there are 3 moving cars, any moving trucks, or a moving car in the opposite direction
-		/int cantCross = (movingcar == 3 || movingtruck != 0) ||
+		int cantCross = (movingcar == 3 || movingtruck != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
 		//while (this vehicle cannot cross) {
