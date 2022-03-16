@@ -725,6 +725,7 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 void vehicle_arrival(pmstr_t *pmstrpara)
 {
 fprintf(stderr,"\nProb is %f \n", pmstrpara->vehicle_type);
+return;
 
 	if(pmstrpara->vehicle_type)
 	{
