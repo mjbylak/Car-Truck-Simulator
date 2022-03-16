@@ -806,11 +806,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		if (movingtruck == 0) {
 			fprintf(stderr,"\nThe program thinks previous direction was %d\n", previousmovingdir);
 			if (waitingtrucknorth > 0 ) {
-				previousmovingdir = 0;
+				previousmovingdir = 1;
 				pthread_cond_signal(&TruckNorthMovable);
 			}
 			else if (waitingtrucksouth > 0) {
-				previousmovingdir = 1;
+				previousmovingdir = 0;
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
