@@ -660,22 +660,30 @@ void *vehicle_routine(void *pmstrpara_a)
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
-		int cannotCross = (waitingcarnorth > 0 || waitingcarsouth > 0) ||
+		int cannotCross = (waitingtrucknorth > 0 || waitingtrucksouth > 0) ||
 							(movingcar == 3 || movingtruck > 0) ||
 							(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		//while (this vehicle cannot cross) {
-			while (cannotCross){
-				if (pmstrpara->direction) waitingcarsouth ++;
-				else waitingcarnorth ++;
+		while (cannotCross){
+			if(pmstrpara->direction == 0) 
+				pthread_cont_wait(&CarNorthMovable, &lock);
+			else pthread_cont_wait(&CarSouthMovable, &lock);
+			
 			
 		//     wait for proper moving signal
 			pthread_cond_wait(&CarNorthMovable, &lock);
 
 			}
+		cannotCross = (waitingtrucknorth > 0 || waitingtrucksouth > 0) ||
+							(movingcar == 3 || movingtruck > 0) ||
+							(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
 
 		//Now begin accrossing
+		printmoving();
 		//update global variables
+		if (pmstrpara->direction) waitingcarsouth ++;
+		else waitingcarnorth ++;
 		//print out proper message
 
 		pthread_mutex_unlock(&lock);
