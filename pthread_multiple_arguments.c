@@ -627,7 +627,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 	if (pmstrpara->vehicle_type) //car
 	{
-		currentmovingdir = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
@@ -715,7 +714,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//setting cantCross to the conditions for the truck to not be able to cross
 		//if there are 3 moving cars, any moving trucks, or a moving car in the opposite direction
-		int cantCross = (movingcar == 3 || movingtruck != 0) ||
+		/*int cantCross = (movingcar == 3 || movingtruck != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 
 		//while (this vehicle cannot cross) {
@@ -798,7 +797,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-
+*/
 	}
 
 
