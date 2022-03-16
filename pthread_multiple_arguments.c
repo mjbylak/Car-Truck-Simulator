@@ -216,10 +216,10 @@ int main(void)
      
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 
             
 		}
@@ -250,10 +250,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -291,10 +291,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 
             
 		}
@@ -325,10 +325,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -364,10 +364,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 
             
 		}
@@ -398,10 +398,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -429,10 +429,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -470,10 +470,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 
             
 		}
@@ -504,10 +504,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -535,10 +535,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -575,10 +575,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 
             
 		}
@@ -606,10 +606,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
@@ -634,10 +634,10 @@ int main(void)
             else args[j].vehicle_type = 0;            
 
             //call vehicle_arrival()
-            vehicle_arrival(&args);
+            vehicle_arrival(&args[j]);
             
             //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args);
+            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
 		}
 		pthread_mutex_unlock(&lock);
 
