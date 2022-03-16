@@ -215,8 +215,7 @@ int main(void)
                 args.vehicle_type = 1;
             }
             else args.vehicle_type = 0;
-
-			args.vehicle_type = 0;            
+     
 
             //call vehicle_arrival()
             vehicle_arrival(&args);
@@ -721,6 +720,8 @@ void *vehicle_routine(pmstr_t *pmstrpara)
 
 void vehicle_arrival(pmstr_t *pmstrpara)
 {
+pmstrpara->vehicle_type = 0;
+
 	if(pmstrpara->vehicle_type)
 	{
 		if (pmstrpara->direction)
