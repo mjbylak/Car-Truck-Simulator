@@ -283,7 +283,7 @@ int main(void)
                         
             //generate pmstr_t struct to save the vehicle type, direction, and id
             pmstr_t args;
-            int direct = rand() % 2;
+            direct = rand() % 2;
             args.vehicle_id = j;
             args.direction = direct;
             if(r <= carprob){
