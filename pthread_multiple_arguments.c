@@ -688,6 +688,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		if (pmstrpara->direction) waitingcarsouth --;
 		else waitingcarnorth --;
 		movingcar++;
+
 		//print out proper message
 		printmoving();
 		printwaiting();
@@ -770,19 +771,22 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		cantCross = (movingcar == 3 || movingtruck != 0) ||
 		(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		}
-		//}
 
 
 		//Now begin accrossing
 		movinglistinsert(pmstrpara->vehicle_id,pmstrpara->vehicle_type,pmstrpara->direction);
 		waitinglistdelete(pmstrpara->vehicle_id);
+
 		//update global variables
 		if (pmstrpara->direction) waitingtrucksouth --;
 		else waitingtrucknorth --;
 		movingtruck++;
+
 		//print out proper message
 		printmoving();
 		printwaiting();
+
+		pthread_mutex_unlock(&lock);
 
 		sleep(2);	//delay (2)
 
