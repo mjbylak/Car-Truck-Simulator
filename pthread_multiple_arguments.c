@@ -724,7 +724,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
-		if(movingcar > 0) {
+		/*if(movingcar > 0) {
 			if(waitingtrucknorth == 0 || waitingtrucksouth == 0){
 				if (pmstrpara->direction == 0) {
 					for(int i = movingcar; i < 3; i ++){
@@ -738,7 +738,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 					} 
 				}
 			}
-		}
+		}*/
 		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
