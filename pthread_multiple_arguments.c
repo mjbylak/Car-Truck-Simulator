@@ -706,8 +706,9 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			}
 		}
 		}
-		else hasFirstVehicleGone = 1;
-		
+		else {
+			if(pmstrpara->direction != 0)  hasFirstVehicleGone = 1;
+		}
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
 		pthread_mutex_unlock(&lock);
