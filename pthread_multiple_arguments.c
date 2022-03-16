@@ -719,7 +719,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				
 			}
 			else if (waitingcarsouth > 0) {
-				fprintf(stderr,"\nThe program thinks there are %d moving cars.\n", movingcar);
+				fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
 				//for(int i = movingcar; i < 3; i ++){
 					if(waitingcarsouth >=3){
 						pthread_cond_signal(&CarSouthMovable);
