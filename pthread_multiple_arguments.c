@@ -660,7 +660,7 @@ void *vehicle_routine(void *pmstrpara_a)
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
-		bool cannotCross = (waitingcarnorth > 0 || waitingcarsouth > 0) ||
+		int cannotCross = (waitingcarnorth > 0 || waitingcarsouth > 0) ||
 							(movingcar == 3 || movingtruck > 0) ||
 							(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		//while (this vehicle cannot cross) {
@@ -670,7 +670,7 @@ void *vehicle_routine(void *pmstrpara_a)
 			
 		//     wait for proper moving signal
 			pthread_cond_wait(&CarNorthMovable, &lock);
-			
+
 			}
 
 
