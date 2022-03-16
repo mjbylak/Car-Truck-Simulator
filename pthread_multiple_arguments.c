@@ -720,7 +720,17 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			}
 			else if (waitingcarsouth > 0) {
 				fprintf(stderr,"\nThe program thinks there are %d moving cars.\n", movingcar);
-				for(int i = movingcar; i < 3; i ++){
+				//for(int i = movingcar; i < 3; i ++){
+					if(waitingcarsouth >=3){
+						pthread_cond_signal(&CarSouthMovable);
+						pthread_cond_signal(&CarSouthMovable);
+						pthread_cond_signal(&CarSouthMovable);
+					}
+					if else (waitingcarsouth == 2){
+						pthread_cond_signal(&CarSouthMovable);
+						pthread_cond_signal(&CarSouthMovable);
+					}
+					else
 					pthread_cond_signal(&CarSouthMovable);
 				} 
 			}
