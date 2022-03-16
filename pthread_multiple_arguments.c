@@ -712,12 +712,17 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			else if (waitingtrucksouth > 0) {
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
+			else if (waitingcarsouth > 0) {
+				for(int i = movigncar; i < 3; i ++){
+					pthread_cond_signal(&CarSouthMovable);
+				}
+			}
 			else if (waitingcarnorth > 0) {
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
 				} 
 				
-			}
+			}/*
 			else if (waitingcarsouth > 0) {
 				fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
 				//for(int i = movingcar; i < 3; i ++){
@@ -734,7 +739,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 					else {
 					pthread_cond_signal(&CarSouthMovable);
 				} 
-			}
+			}*/
 		}
 		/*if(movingcar > 0) {
 			if(waitingtrucknorth == 0 || waitingtrucksouth == 0){
