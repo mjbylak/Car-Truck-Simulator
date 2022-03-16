@@ -135,8 +135,8 @@ int main(int argc, char *argv[])
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             
-            direct = rand() % 2;
             args[j].vehicle_id = j;
+			fprintf(stderr,"\nI think direction is %d\n",direct);
             args[j].direction = direct;
             if(r <= carprob){
                 args[j].vehicle_type = 1;
