@@ -666,8 +666,8 @@ void *vehicle_routine(void *pmstrpara_a)
 		//while (this vehicle cannot cross) {
 		while (cannotCross){
 			if(pmstrpara->direction == 0) 
-				pthread_cont_wait(&CarNorthMovable, &lock);
-			else pthread_cont_wait(&CarSouthMovable, &lock);
+				pthread_cond_wait(&CarNorthMovable, &lock);
+			else pthread_cond_wait(&CarSouthMovable, &lock);
 			
 			
 		//     wait for proper moving signal
