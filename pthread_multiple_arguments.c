@@ -806,18 +806,22 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		if (movingtruck == 0) {
 			fprintf(stderr,"\nThe program thinks previous direction was %d\n", previousmovingdir);
 			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
+				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
 			}
 			else if (waitingtrucksouth > 0 && previousmovingdir == 0) {
+				previousmovingdir = 1;
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
+				previousmovingdir = 0;
 				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarNorthMovable);
 				} 	
 			}
 			else if (waitingcarsouth > 0) {
+				previousmovingdir = 1;
 				currentmovingdir = 1; //sets the direction to that of the oncoming car, required for 3 cars to join
 				for(int i = movingcar; i < 3; i ++){
 					pthread_cond_signal(&CarSouthMovable);
