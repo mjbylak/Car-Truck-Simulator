@@ -620,10 +620,10 @@ int main(int argc, char *argv[])
 } // end of main function
 
 
-void *vehicle_routine(void *pmstrpara)
+void *vehicle_routine(void *pmstrpara_meth_arg)
 {
 	char *strdir;
-	//pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
+	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
 	if (pmstrpara->vehicle_type) //car
 	{
@@ -632,7 +632,7 @@ void *vehicle_routine(void *pmstrpara)
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
 	// or any moving trucks, or any waiting trucks
 	// or moving car in different direction
-	if(waitingcarnorth != 0 || waitingcarsouth != 0) currentmovingdir = 1;
+	
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
@@ -707,7 +707,7 @@ void *vehicle_routine(void *pmstrpara)
 	}
 
 
-	/*else //truck
+	else //truck
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
@@ -798,7 +798,7 @@ void *vehicle_routine(void *pmstrpara)
 		pthread_mutex_unlock(&lock);
 
 
-	}*/
+	}
 
 
 
