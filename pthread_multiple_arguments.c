@@ -805,13 +805,13 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
 			
-			if (waitingtrucknorth > 0 ) {
+			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
 				fprintf(stderr,"\nWHY THE HELL NORTH %d\n", previousmovingdir);
 				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
 			}
-			else if (waitingtrucksouth > 0) {
+			else if (waitingtrucksouth > 0 && previousmovingdir == 0) {
 				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 1;
 				fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
