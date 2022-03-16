@@ -817,6 +817,18 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
+			else if (waitingtrucknorth > 0 ) {
+				fprintf(stderr,"\nWHY THE HELL NORTH %d\n", previousmovingdir);
+				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
+				previousmovingdir = 0;
+				pthread_cond_signal(&TruckNorthMovable);
+			}
+			else if (waitingtrucksouth > 0 ) {
+				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
+				previousmovingdir = 1;
+				fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
+				pthread_cond_signal(&TruckSouthMovable); 
+				}
 			else if (waitingcarnorth > 0) {
 				previousmovingdir = 0;
 				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
