@@ -662,11 +662,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
 	// or any moving trucks, or any waiting trucks
 	// or moving car in different direction
-	int cannotCross = 	(movingcar == 3 || movingtruck != 0) ||
+	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		//while (this vehicle cannot cross) {
-		while (cannotCross){
+		while (cantCross){
 			if(pmstrpara->direction == 0) 
 				pthread_cond_wait(&CarNorthMovable, &lock);
 			else pthread_cond_wait(&CarSouthMovable, &lock);
@@ -675,7 +675,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//     wait for proper moving signal
 
 			
-		cannotCross = 	(movingcar == 3 || movingtruck != 0) ||
+		cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
 		}
@@ -696,7 +696,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		sleep(2);
 
-		//now leaving
+		//The car is now leaving 
 		pthread_mutex_lock(&lock);
 		movinglistdelete(pmstrpara->vehicle_id);
 
@@ -754,21 +754,69 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	{
 		pthread_mutex_lock(&lock);
 		//Try to cross
+
+		//setting cantCross to the conditions for the truck to not be able to cross
+		//if there are 3 moving cars, any moving trucks, or a moving car in the opposite direction
+		int cantCross = (movingcar == 3 || movingtruck != 0) ||
+						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+
 		//while (this vehicle cannot cross) {
+		while (cantCross){
+			if(pmstrpara->direction == 0)
+				pthread_cond_wait(&TruckNorthMovable, &lock);
+			else pthread_cond_wait(&TruckSouthMovable, &lock);
+		
 		//     wait for proper moving signal
+		cantCross = (movingcar == 3 || movingtruck != 0) ||
+		(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+		}
 		//}
 
 
 		//Now begin accrossing
+		movinglistinsert(pmstrpara->vehicle_id,pmstrpara->vehicle_type,pmstrpara->direction);
+		waitinglistdelete(pmstrpara->vehicle_id);
 		//update global variables
+		if (pmstrpara->direction) waitingtrucksouth --;
+		else waitingtrucknorth --;
+		movingtruck++;
 		//print out proper message
-
+		printmoving();
+		printwaiting();
 
 		sleep(2);	//delay (2)
 
+		//The truck is now leaving
 		pthread_mutex_lock(&lock);
+		movinglistdelete(pmstrpara->vehicle_id);
+
 		//update global variables
+		previousmovingdir = currentmovingdir;
+		movingtruck --;
+
 		//send out signals to wake up vehicle(s) accordingly
+		if (movingtruck == 0) {
+			if (waitingtrucknorth > 0) {
+				pthread_cond_signal(&TruckNorthMovable);
+			}
+			else if (waitingtrucksouth > 0) {
+				pthread_cond_signal(&TruckSouthMovable); 
+				}
+			else if (waitingcarnorth > 0) {
+				currentmovingdir = 0; //sets the direction to that of the oncoming car, required for 3 cars to join
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarNorthMovable);
+				} 	
+			}
+			else if (waitingcarsouth > 0) {
+				currentmovingdir = 1; //sets the direction to that of the oncoming car, required for 3 cars to join
+				//fprintf(stderr,"\n %d The program thinks there are %d moving cars.\n", waitingcarsouth, movingcar);
+				for(int i = movingcar; i < 3; i ++){
+					pthread_cond_signal(&CarSouthMovable);
+				} 
+			}
+		}
+		
 		fprintf(stderr,"\nTruck #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
 		pthread_mutex_unlock(&lock);
