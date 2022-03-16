@@ -7,8 +7,6 @@
 
 //Global variables
 
-int hasFirstCarGone = 0;
-
 typedef struct waitinglist
 {
 	int vehicle_id;
@@ -635,7 +633,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
 	// or any moving trucks, or any waiting trucks
 	// or moving car in different direction
-	if(pmstrpara->direction == 0) {hasFirstCarGone = 1;}
 	int cantCross = 	0;
 						/*(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
