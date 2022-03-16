@@ -625,6 +625,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
+	int hasFirstVehicleGone = 0; // A boolean that is necessary for ensuring the first vehicle is north 
+
 	if (pmstrpara->vehicle_type) //car
 	{
 		pthread_mutex_lock(&lock);
@@ -681,6 +683,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		movingcar--;
 
 		//send out signals to wake up vehicle(s) accordingly
+		if (hasFirstVehicleGone) {
 		if (movingcar ==0) {
 			if (waitingtrucknorth > 0) {
 				pthread_cond_signal(&TruckNorthMovable);
@@ -702,6 +705,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
+		}
+		else hasFirstVehicleGone = 1;
 		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
