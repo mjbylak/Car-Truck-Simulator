@@ -148,7 +148,7 @@ int main(void)
 		pthread_mutex_unlock(&lock);
 
 
-	    sleep(10);//delay (10)
+	    //sleep(10);//delay (10)
 
 
 
@@ -706,18 +706,18 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		movingcar--;
 
 		//send out signals to wake up vehicle(s) accordingly
-		if (movingcar == 0) {
-			if (waitingcarnorth > 0) {
-				pthread_cond_signal(&CarNorthMovable);
-			}
-			else if (waitingcarsouth > 0) { 
-				pthread_cond_signal(&CarSouthMovable);
-			}
-			else if (waitingtrucknorth > 0) {
+		if (movingcar ==0) {
+			if (waitingtrucknorth > 0) {
 				pthread_cond_signal(&TruckNorthMovable);
 			}
 			else if (waitingtrucksouth > 0) {
-				pthread_cond_signal(&TruckSouthMovable);
+				pthread_cond_signal(&TruckSouthMovable);(movingcar == 0) 
+				}
+			else if (waitingcarnorth > 0) {
+				pthread_cond_signal(&CarNorthMovable);
+			}
+			else if (waitingcarsouth > 0) {
+				pthread_cond_signal(&CarSouthMovable);
 			}
 		}
 
