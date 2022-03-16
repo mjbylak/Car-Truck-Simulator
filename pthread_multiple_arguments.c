@@ -632,7 +632,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
 	// or any moving trucks, or any waiting trucks
 	// or moving car in different direction
-	currentmovingdir = 1;
+	if(waitingcarnorth != 0 || waitingcarsouth != 0) currentmovingdir = 1;
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
