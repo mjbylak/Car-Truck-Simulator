@@ -52,7 +52,7 @@ void printmoving();
 void printwaiting();
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int option;
 	int i,j;
@@ -97,7 +97,8 @@ int main(void)
 	do
 	{
 		fprintf(stderr,"\nPlease select [1-6]:");
-		scanf("%d", &option);
+		option = atoi(argv[1]);
+		//scanf("%d", &option);
 	}while((option<0) || (option>6));
 
 	fprintf(stderr,"***************************************************************\n");
@@ -114,11 +115,16 @@ int main(void)
 	}
 
 	srand((unsigned int)time((time_t *)NULL));
+	
+	//schedule 1:
+	// 10 vehicles (10 pause) 10 more vehicles
+	// only cars
+
 	if(option==1) // 20 vehicles
 	{
 		pmstr_t args [20];  //setting up an array of arguments to store all values of vehicles
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=9; j++) // the first ten vehicles arrive
 		{
 
             //call rand() to decide vehicle type and direction
@@ -153,7 +159,7 @@ int main(void)
 
 
 		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
+		for (j=10; j<=19; j++) // the second 10 vehicles arrive
 		{
             
 			float r = (rand()%100);
@@ -185,11 +191,15 @@ int main(void)
 
 	} //end of option 1
 
+	//schedule 2: 
+	// 10 vehicles (10 pause) 10 more vehicles
+	// only trucks
+
 	else if(option==2) // 20 vehicles
 	{
 		pmstr_t args [20];
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=9; j++) // first ten vehicles arrive
 		{
 
 
@@ -231,7 +241,7 @@ int main(void)
 
 
 		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
+		for (j=10; j<=19; j++) // second ten vehicles arrive
 		{
             
 			float r = (rand()%100);
@@ -262,13 +272,16 @@ int main(void)
 			pthread_join(vehicle[j], NULL);
 } //end of option 2
 
+	//schedule 3:
+	// 20 vehicles () 
+	// 65% cars 35% chance trucks
 
 	else if(option==3) // 20 vehicles
 	{
 
 		pmstr_t args [20];
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=19; j++) //spawn all twenty vehicles
 		{
 
 
@@ -298,38 +311,7 @@ int main(void)
 
             
 		}
-		pthread_mutex_unlock(&lock);
-
-
-	    sleep(10);//delay (10)
-
-
-
-		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
-		{
-            
-			float r = (rand()%100);
-			r = r/100;
-			
-			int direct;
-            
-            //generate pmstr_t struct to save the vehicle type, direction, and id
-            
-            direct = rand() % 2;
-            args[j].vehicle_id = j;
-            args[j].direction = direct;
-            if(r <= carprob){
-                args[j].vehicle_type = 1;
-            }
-            else args[j].vehicle_type = 0;            
-
-            //call vehicle_arrival()
-            vehicle_arrival(&args[j]);
-            
-            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
-		}
+		
 		pthread_mutex_unlock(&lock);
 
 
@@ -337,11 +319,15 @@ int main(void)
 			pthread_join(vehicle[j], NULL);
 	} // end of option3
 
+	//schedule 4:
+	// 10 vehicles (25 pause) 10 vehicles (25 pause) 10 vehicles
+	// 50% cars 50% trucks
+
 	else if(option==4) // 30 vehicles
 	{
 		pmstr_t args [30];
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=9; j++) //spawn first 10 vehicles
 		{
 
 
@@ -374,12 +360,12 @@ int main(void)
 		pthread_mutex_unlock(&lock);
 
 
-	    sleep(10);//delay (10)
+	    sleep(25);//delay (25)
 
 
 
 		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
+		for (j=10; j<=19; j++) //send in second 10 vehicles
 		{
 			
 			float r = (rand()%100);
@@ -405,12 +391,12 @@ int main(void)
 		}
 		pthread_mutex_unlock(&lock);
 
-	    sleep(10);//delay (10)
+	    sleep(25);//delay (25)
 
 
 
 		pthread_mutex_lock(&lock);
-		for (j=20; j<=29; j++)
+		for (j=20; j<=29; j++) //send in the final 10 vehicles
 		{
             
 			float r = (rand()%100);
@@ -441,12 +427,16 @@ int main(void)
 
 	} // end of option4
 
+	//schedule 5:
+	// 10 vehicles (3 pause) 10 vehicles (10 pause) 10 vehicles
+	// 65% cars 35% trucks
+
 	else if(option==5) // 30 vehicles
 	{
 
 		pmstr_t args [30];
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=9; j++) //send in the first 10 vehicles
 		{
 
 
@@ -480,12 +470,12 @@ int main(void)
 		pthread_mutex_unlock(&lock);
 
 
-	    sleep(10);//delay (10)
+	    sleep(3);//delay (3)
 
 
 
 		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
+		for (j=10; j<=19; j++) // the second 10 vehicles arrive
 		{
             
 			float r = (rand()%100);
@@ -516,7 +506,7 @@ int main(void)
 
 
 		pthread_mutex_lock(&lock);
-		for (j=20; j<=29; j++)
+		for (j=20; j<=29; j++) //send in the final 10 vehicles
 		{
             
 			float r = (rand()%100);
@@ -546,12 +536,16 @@ int main(void)
 			pthread_join(vehicle[j], NULL);
 	} // end of option5
 
+	//schedule 6:
+	// 20 vehicles (pause 15) 10 vehicles
+	// 75% car 25% truck
+
 	else //option6: 30 vehicles
 	{
 
 		pmstr_t args [30];
         pthread_mutex_lock(&lock);
-		for (j=0; j<=9; j++)
+		for (j=0; j<=19; j++) //send in the first 20 vehicles
 		{
 
 
@@ -585,40 +579,12 @@ int main(void)
 		pthread_mutex_unlock(&lock);
 
 
-	    sleep(10);//delay (10)
+	    sleep(15);//delay (15)
 
 
 
 		pthread_mutex_lock(&lock);
-		for (j=10; j<=19; j++)
-		{
-			double r = (rand() % 100) / 100;
-            int direct = rand() % 2;
-            
-            //generate pmstr_t struct to save the vehicle type, direction, and id
-            
-            direct = rand() % 2;
-            args[j].vehicle_id = j;
-            args[j].direction = direct;
-            if(r <= carprob){
-                args[j].vehicle_type = 1;
-            }
-            else args[j].vehicle_type = 0;            
-
-            //call vehicle_arrival()
-            vehicle_arrival(&args[j]);
-            
-            //create a pthread to represent the vehicle, vehicle_routine() is the start function of a pthread
-            pthread_create(&vehicle[j], NULL, vehicle_routine , (void *)&args[j]);
-		}
-		pthread_mutex_unlock(&lock);
-
-	    sleep(10);//delay (10)
-
-
-
-		pthread_mutex_lock(&lock);
-		for (j=20; j<=29; j++)
+		for (j=20; j<=29; j++) //send in the final 10 vehicles
 		{
 			double r = (rand() % 100) / 100;
             int direct = rand() % 2;
@@ -731,21 +697,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
-		/*if(movingcar > 0) {
-			if(waitingtrucknorth == 0 || waitingtrucksouth == 0){
-				if (pmstrpara->direction == 0) {
-					for(int i = movingcar; i < 3; i ++){
-						pthread_cond_signal(&CarNorthMovable);
-					} 
-					
-				}
-				else if (pmstrpara->direction == 1) {
-					for(int i = movingcar; i < 3; i ++){
-						pthread_cond_signal(&CarSouthMovable);
-					} 
-				}
-			}
-		}*/
 		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
@@ -806,15 +757,23 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		if (movingtruck == 0) {
 			
 			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
-				fprintf(stderr,"\nWHY THE HELL NORTH %d\n", previousmovingdir);
 				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
 			}
-			else if (waitingtrucksouth > 0 && previousmovingdir == 1) {
+			else if (waitingtrucksouth > 0 && previousmovingdir == 0) {
 				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 1;
-				fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
+				pthread_cond_signal(&TruckSouthMovable); 
+				}
+			else if (waitingtrucknorth > 0 ) {
+				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
+				previousmovingdir = 0;
+				pthread_cond_signal(&TruckNorthMovable);
+			}
+			else if (waitingtrucksouth > 0 ) {
+				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
+				previousmovingdir = 1;
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
