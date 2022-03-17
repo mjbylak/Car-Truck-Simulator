@@ -6,6 +6,8 @@
 #include <time.h>
 
 //Global variables
+int firstVehicleHasCrossed = 0;
+
 typedef struct waitinglist
 {
 	int vehicle_id;
@@ -52,7 +54,7 @@ void printmoving();
 void printwaiting();
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int option;
 	int i,j;
@@ -97,7 +99,8 @@ int main(void)
 	do
 	{
 		fprintf(stderr,"\nPlease select [1-6]:");
-		scanf("%d", &option);
+		option = atoi(argv[1]);
+		//scanf("%d", &option);
 	}while((option<0) || (option>6));
 
 	fprintf(stderr,"***************************************************************\n");
@@ -621,11 +624,13 @@ int main(void)
 
 void *vehicle_routine(void *pmstrpara_meth_arg)
 {
+	
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
 	if (pmstrpara->vehicle_type) //car
 	{
+		firstVehicleHasCrossed = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
@@ -633,14 +638,15 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	// or moving car in different direction
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
-						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+						(movingcar > 0 && pmstrpara->direction != currentmovingdir) ||
+						(pmstrpara->direction == 1 && !firstVehicleHasCrossed);
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 			if(pmstrpara->direction == 0) 
 				pthread_cond_wait(&CarNorthMovable, &lock);
 			else pthread_cond_wait(&CarSouthMovable, &lock);
 			
-			
+			if(pmstrpara->direction == 0) firstVehicleHasCrossed = 1;
 		//     wait for proper moving signal
 
 			
@@ -650,8 +656,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		}
 
 		//Now begin accrossing
-		movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
-		waitinglistdelete(pmstrpara->vehicle_id);
+		if(firstVehicleHasCrossed || pmstrpara->direction == 0) {
+			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
+			waitinglistdelete(pmstrpara->vehicle_id);
+			firstVehicleHasCrossed = 1;
+		
 
 		//update global variables
 		if (pmstrpara->direction) waitingcarsouth --;
@@ -701,7 +710,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-
+		}
 	}
 
 
@@ -713,13 +722,25 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//setting cantCross to the conditions for the truck to not be able to cross
 		//if there are 3 moving cars, any moving trucks, or a moving car in the opposite direction
 		int cantCross = (movingcar == 3 || movingtruck != 0) ||
-						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+						(movingcar > 0 && pmstrpara->direction != currentmovingdir) ||
+						(pmstrpara->direction == 1 && !firstVehicleHasCrossed);
 
 		//while (this vehicle cannot cross) {
 		while (cantCross){
+
+			fprintf(stderr,"\nid %d\n", pmstrpara->vehicle_id);
+			fprintf(stderr,"\ndirection %d\n", pmstrpara->direction);
+			fprintf(stderr,"\ntype %d\n", pmstrpara->vehicle_type);
+
+
+
+
+
 			if(pmstrpara->direction == 0)
 				pthread_cond_wait(&TruckNorthMovable, &lock);
 			else pthread_cond_wait(&TruckSouthMovable, &lock);
+
+			if(pmstrpara->direction == 0) firstVehicleHasCrossed = 1;
 		
 		//     wait for proper moving signal
 		cantCross = (movingcar == 3 || movingtruck != 0) ||
@@ -728,9 +749,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 
 		//Now begin accrossing
-		movinglistinsert(pmstrpara->vehicle_id,pmstrpara->vehicle_type,pmstrpara->direction);
-		waitinglistdelete(pmstrpara->vehicle_id);
-
+		if(firstVehicleHasCrossed || pmstrpara->direction == 0) {
+			firstVehicleHasCrossed = 1;
+			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
+			waitinglistdelete(pmstrpara->vehicle_id);
+		
 		//update global variables
 		if (pmstrpara->direction) waitingtrucksouth --;
 		else waitingtrucknorth --;
@@ -751,6 +774,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//update global variables
 		previousmovingdir = currentmovingdir;
 		movingtruck --;
+
+		fprintf(stderr,"\nid %d direciton %d\n", pmstrpara->vehicle_id, pmstrpara->direction);
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
@@ -795,7 +820,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-
+		}
 	}
 
 
