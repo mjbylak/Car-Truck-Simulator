@@ -6,6 +6,8 @@
 #include <time.h>
 
 //Global variables
+firstVehicleHasCrossed = 0;
+
 typedef struct waitinglist
 {
 	int vehicle_id;
@@ -622,6 +624,7 @@ int main(int argc, char *argv[])
 
 void *vehicle_routine(void *pmstrpara_meth_arg)
 {
+	
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
@@ -651,8 +654,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		}
 
 		//Now begin accrossing
-		movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
-		waitinglistdelete(pmstrpara->vehicle_id);
+		if(firstVehicleHasCrossed || pmstrpara == 0) {
+			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
+			waitinglistdelete(pmstrpara->vehicle_id);
+			firstVehicleHasCrossed = 1;
+		}
 
 		//update global variables
 		if (pmstrpara->direction) waitingcarsouth --;
@@ -673,7 +679,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//update global variables
 		previousmovingdir = currentmovingdir;
-		movingcar++;
+		movingcar--;
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingcar ==0) {
