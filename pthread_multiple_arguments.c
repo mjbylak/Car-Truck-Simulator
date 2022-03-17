@@ -740,9 +740,9 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//Now begin accrossing
 		if(firstVehicleHasCrossed || pmstrpara->direction == 0) {
+			firstVehicleHasCrossed = 1;
 			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
 			waitinglistdelete(pmstrpara->vehicle_id);
-			firstVehicleHasCrossed = 1;
 		
 		//update global variables
 		if (pmstrpara->direction) waitingtrucksouth --;
@@ -764,6 +764,8 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//update global variables
 		previousmovingdir = currentmovingdir;
 		movingtruck --;
+
+		fprintf(stderr,"\nWE ARE HERE %d\n", pmstrpara->vehicle_id);
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
