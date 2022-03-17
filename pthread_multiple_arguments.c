@@ -739,7 +739,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 
 		//Now begin accrossing
-		if(firstVehicleHasCrossed || pmstrpara->direction == 0) {
+		//if(firstVehicleHasCrossed || pmstrpara->direction == 0) {
 			firstVehicleHasCrossed = 1;
 			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
 			waitinglistdelete(pmstrpara->vehicle_id);
@@ -810,7 +810,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-		}
+		//}
 	}
 
 
