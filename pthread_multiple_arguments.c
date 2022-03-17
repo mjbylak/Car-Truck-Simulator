@@ -509,6 +509,7 @@ int main(int argc, char *argv[])
 	    sleep(10);//delay (10)
 
 		args[0].direction = 0;
+		args[9].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
