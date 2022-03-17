@@ -236,6 +236,7 @@ int main(int argc, char *argv[])
 		}
 		pthread_mutex_unlock(&lock);
 
+		args[0].direction = 0;
 
 	    sleep(10);//delay (10)
 
@@ -313,6 +314,7 @@ int main(int argc, char *argv[])
             
 		}
 		
+		args[0].direction = 0;
 		pthread_mutex_unlock(&lock);
 
 
@@ -363,6 +365,7 @@ int main(int argc, char *argv[])
 
 	    sleep(25);//delay (25)
 
+		args[0].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
@@ -473,6 +476,7 @@ int main(int argc, char *argv[])
 
 	    sleep(3);//delay (3)
 
+		args[0].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
@@ -504,6 +508,7 @@ int main(int argc, char *argv[])
 
 	    sleep(10);//delay (10)
 
+		args[0].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
