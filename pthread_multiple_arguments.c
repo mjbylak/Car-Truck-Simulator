@@ -624,12 +624,13 @@ int main(int argc, char *argv[])
 
 void *vehicle_routine(void *pmstrpara_meth_arg)
 {
-	firstVehicleHasCrossed = 0;
+	
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
 	if (pmstrpara->vehicle_type) //car
 	{
+		firstVehicleHasCrossed = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
