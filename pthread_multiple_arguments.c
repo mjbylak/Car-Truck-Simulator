@@ -624,7 +624,7 @@ int main(int argc, char *argv[])
 
 void *vehicle_routine(void *pmstrpara_meth_arg)
 {
-	
+	firstVehicleHasCrossed = 0;
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
