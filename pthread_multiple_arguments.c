@@ -775,7 +775,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		previousmovingdir = currentmovingdir;
 		movingtruck --;
 
-		fprintf(stderr,"\nid %d\n", pmstrpara->vehicle_id);
+		fprintf(stderr,"\nid %d direciton %d\n", pmstrpara->vehicle_id, pmstrpara->direction);
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
