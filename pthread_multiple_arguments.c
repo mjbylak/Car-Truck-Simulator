@@ -659,7 +659,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
 			waitinglistdelete(pmstrpara->vehicle_id);
 			firstVehicleHasCrossed = 1;
-		}
+		
 
 		//update global variables
 		if (pmstrpara->direction) waitingcarsouth --;
@@ -709,7 +709,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-
+		}
 	}
 
 
@@ -743,7 +743,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			movinglistinsert(pmstrpara->vehicle_id, pmstrpara->vehicle_type, pmstrpara->direction);
 			waitinglistdelete(pmstrpara->vehicle_id);
 			firstVehicleHasCrossed = 1;
-		}
+		
 		//update global variables
 		if (pmstrpara->direction) waitingtrucksouth --;
 		else waitingtrucknorth --;
@@ -808,7 +808,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		pthread_mutex_unlock(&lock);
 
-
+		}
 	}
 
 
