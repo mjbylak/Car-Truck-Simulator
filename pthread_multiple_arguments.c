@@ -6,7 +6,6 @@
 #include <time.h>
 
 //Global variables
-
 typedef struct waitinglist
 {
 	int vehicle_id;
@@ -53,7 +52,7 @@ void printmoving();
 void printwaiting();
 
 
-int main(int argc, char *argv[])
+int main(void)
 {
 	int option;
 	int i,j;
@@ -98,8 +97,7 @@ int main(int argc, char *argv[])
 	do
 	{
 		fprintf(stderr,"\nPlease select [1-6]:");
-		option = atoi(argv[1]);
-		//scanf("%d", &option);
+		scanf("%d", &option);
 	}while((option<0) || (option>6));
 
 	fprintf(stderr,"***************************************************************\n");
@@ -136,8 +134,8 @@ int main(int argc, char *argv[])
             
             //generate pmstr_t struct to save the vehicle type, direction, and id
             
+            direct = rand() % 2;
             args[j].vehicle_id = j;
-			//fprintf(stderr,"\nI think direction is %d\n",direct);
             args[j].direction = direct;
             if(r <= carprob){
                 args[j].vehicle_type = 1;
@@ -153,8 +151,7 @@ int main(int argc, char *argv[])
             
 		}
 		pthread_mutex_unlock(&lock);
-		                args[0].direction = 0;
-		args[9].direction = 0;
+
 
 	    sleep(10);//delay (10)
 
@@ -237,8 +234,6 @@ int main(int argc, char *argv[])
 		}
 		pthread_mutex_unlock(&lock);
 
-		                args[0].direction = 0;
-		args[9].direction = 0;
 
 	    sleep(10);//delay (10)
 
@@ -316,8 +311,6 @@ int main(int argc, char *argv[])
             
 		}
 		
-		                args[0].direction = 0;
-		args[9].direction = 0;
 		pthread_mutex_unlock(&lock);
 
 
@@ -368,8 +361,6 @@ int main(int argc, char *argv[])
 
 	    sleep(25);//delay (25)
 
-		                args[0].direction = 0;
-		args[9].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
@@ -480,8 +471,6 @@ int main(int argc, char *argv[])
 
 	    sleep(3);//delay (3)
 
-		                args[0].direction = 0;
-		args[9].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
@@ -513,8 +502,6 @@ int main(int argc, char *argv[])
 
 	    sleep(10);//delay (10)
 
-		                args[0].direction = 0;
-		args[9].direction = 0;
 
 
 		pthread_mutex_lock(&lock);
@@ -647,7 +634,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
 						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
-						/*0*/
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 			if(pmstrpara->direction == 0) 
@@ -710,6 +696,21 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 				} 
 			}
 		}
+		/*if(movingcar > 0) {
+			if(waitingtrucknorth == 0 || waitingtrucksouth == 0){
+				if (pmstrpara->direction == 0) {
+					for(int i = movingcar; i < 3; i ++){
+						pthread_cond_signal(&CarNorthMovable);
+					} 
+					
+				}
+				else if (pmstrpara->direction == 1) {
+					for(int i = movingcar; i < 3; i ++){
+						pthread_cond_signal(&CarSouthMovable);
+					} 
+				}
+			}
+		}*/
 		
     	fprintf(stderr,"\nCar #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
@@ -770,6 +771,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		if (movingtruck == 0) {
 			
 			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
+				//fprintf(stderr,"\nWHY THE HELL NORTH %d\n", previousmovingdir);
 				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
@@ -777,9 +779,11 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			else if (waitingtrucksouth > 0 && previousmovingdir == 0) {
 				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 1;
+				//fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingtrucknorth > 0 ) {
+				//fprintf(stderr,"\nWHY THE HELL NORTH %d\n", previousmovingdir);
 				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 0;
 				pthread_cond_signal(&TruckNorthMovable);
@@ -787,6 +791,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 			else if (waitingtrucksouth > 0 ) {
 				currentmovingdir = 1; //sets the direction to that of the oncoming truck, required for alternation
 				previousmovingdir = 1;
+				//fprintf(stderr,"\nWHY THE HELL SOUTH %d\n", previousmovingdir);
 				pthread_cond_signal(&TruckSouthMovable); 
 				}
 			else if (waitingcarnorth > 0) {
