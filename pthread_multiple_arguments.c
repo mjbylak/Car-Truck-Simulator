@@ -727,9 +727,9 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 
-			fprintf(stderr,"\nWE ARE HERE %d\n", pmstrpara->vehicle_id);
-			fprintf(stderr,"\nWE ARE HERE %d\n", pmstrpara->direction);
-			fprintf(stderr,"\nWE ARE HERE %d\n", pmstrpara->vehicle_type);
+			fprintf(stderr,"\nid %d\n", pmstrpara->vehicle_id);
+			fprintf(stderr,"\ndirection %d\n", pmstrpara->direction);
+			fprintf(stderr,"\ntype %d\n", pmstrpara->vehicle_type);
 
 
 
@@ -774,7 +774,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		previousmovingdir = currentmovingdir;
 		movingtruck --;
 
-		fprintf(stderr,"\nWE ARE HERE %d\n", pmstrpara->vehicle_id);
+		fprintf(stderr,"\nid %d\n", pmstrpara->vehicle_id);
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
