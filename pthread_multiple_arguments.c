@@ -637,14 +637,15 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 	// or moving car in different direction
 	int cantCross = 	(movingcar == 3 || movingtruck != 0) ||
 						(waitingtrucknorth != 0 || waitingtrucksouth != 0) ||
-						(movingcar > 0 && pmstrpara->direction != currentmovingdir);
+						(movingcar > 0 && pmstrpara->direction != currentmovingdir) ||
+						(pmstrpara->direction == 1 && !firstVehicleHasCrossed);
 		//while (this vehicle cannot cross) {
 		while (cantCross){
 			if(pmstrpara->direction == 0) 
 				pthread_cond_wait(&CarNorthMovable, &lock);
 			else pthread_cond_wait(&CarSouthMovable, &lock);
 			
-			
+			if(pmstrpara->direction == 0) firstVehicleHasCrossed = 1;
 		//     wait for proper moving signal
 
 			
