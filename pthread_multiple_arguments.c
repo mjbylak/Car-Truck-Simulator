@@ -715,7 +715,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 	else //truck
 	{
-		firstVehicleHasCrossed = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 
@@ -767,7 +766,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		movingtruck --;
 
 		//send out signals to wake up vehicle(s) accordingly
-		if (movingtruck == 0) {
+		//if (movingtruck == 0) {
 			
 			if (waitingtrucknorth > 0 && previousmovingdir == 1) {
 				currentmovingdir = 0; //sets the direction to that of the oncoming truck, required for alternation
@@ -803,7 +802,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 					pthread_cond_signal(&CarSouthMovable);
 				} 
 			}
-		}
+		//}
 		
 		fprintf(stderr,"\nTruck #%d exited the bridge.\n", pmstrpara->vehicle_id);
 
