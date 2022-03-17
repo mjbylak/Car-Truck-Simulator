@@ -715,6 +715,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 	else //truck
 	{
+		firstVehicleHasCrossed = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 
