@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
             
 		}
 		pthread_mutex_unlock(&lock);
-
+		args[0].direction = 0;
 
 	    sleep(10);//delay (10)
 
