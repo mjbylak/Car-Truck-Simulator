@@ -673,7 +673,7 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//update global variables
 		previousmovingdir = currentmovingdir;
-		movingcar--;
+		movingcar++;
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingcar ==0) {
