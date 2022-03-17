@@ -6,7 +6,7 @@
 #include <time.h>
 
 //Global variables
-firstVehicleHasCrossed = 0;
+int firstVehicleHasCrossed = 0;
 
 typedef struct waitinglist
 {
