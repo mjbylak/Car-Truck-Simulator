@@ -624,13 +624,12 @@ int main(int argc, char *argv[])
 
 void *vehicle_routine(void *pmstrpara_meth_arg)
 {
-	
+	firstVehicleHasCrossed = 0;
 	char *strdir;
 	pmstr_t *pmstrpara = (pmstr_t *)pmstrpara_meth_arg;
 
 	if (pmstrpara->vehicle_type) //car
 	{
-		firstVehicleHasCrossed = 0;
 		pthread_mutex_lock(&lock);
 		//Try to cross
 	//Checking to see if the car cannot cross, matching conditions like moving car at max of three
@@ -727,15 +726,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 
 		//while (this vehicle cannot cross) {
 		while (cantCross){
-
-			fprintf(stderr,"\nid %d\n", pmstrpara->vehicle_id);
-			fprintf(stderr,"\ndirection %d\n", pmstrpara->direction);
-			fprintf(stderr,"\ntype %d\n", pmstrpara->vehicle_type);
-
-
-
-
-
 			if(pmstrpara->direction == 0)
 				pthread_cond_wait(&TruckNorthMovable, &lock);
 			else pthread_cond_wait(&TruckSouthMovable, &lock);
@@ -774,8 +764,6 @@ void *vehicle_routine(void *pmstrpara_meth_arg)
 		//update global variables
 		previousmovingdir = currentmovingdir;
 		movingtruck --;
-
-		fprintf(stderr,"\nid %d direciton %d\n", pmstrpara->vehicle_id, pmstrpara->direction);
 
 		//send out signals to wake up vehicle(s) accordingly
 		if (movingtruck == 0) {
